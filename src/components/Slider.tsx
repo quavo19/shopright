@@ -49,7 +49,7 @@ const SlideTitle = styled.h1`
 const SlideDescription = styled.p`
   line-height: 1.4;
   color: hsl(0, 0%, 63%);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
 `;
 

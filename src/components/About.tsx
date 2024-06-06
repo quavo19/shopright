@@ -39,7 +39,7 @@ const Heading = styled.h3`
 const Paragraph = styled.p`
   line-height: 1.4;
   color: hsl(0, 0%, 63%);
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const About: React.FC = () => {
