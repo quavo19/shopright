@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from '../components/Slider';
+import About from '../components/About';
 
 
 const HomePage: React.FC = () => {
@@ -28,6 +29,7 @@ const HomePage: React.FC = () => {
             height: "100vh",
         }}>
             <Slider slides={slides} />
+            <About/>
         </div>
     )
 }
