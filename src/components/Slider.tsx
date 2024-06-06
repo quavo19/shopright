@@ -50,6 +50,7 @@ const SlideDescription = styled.p`
   line-height: 1.4;
   color: hsl(0, 0%, 63%);
   font-weight: 500;
+  font-size: 14px;
 `;
 
 const StyledLink = styled(Link)`
