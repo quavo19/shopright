@@ -20,6 +20,9 @@ const StyledSlider = styled.div`
 
 const ImageContainer = styled.div`
   flex: 1;
+  @media (max-width: 1050px) {
+    flex: 0.6;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -32,6 +35,10 @@ const TextContainer = styled.div`
   justify-content: center;
   position: relative;
   width: 40%;
+
+  @media (max-width: 1050px) {
+    padding: 0 40px;
+  }
 `;
 
 const SlideTitle = styled.h1`
@@ -57,10 +64,10 @@ const StyledLink = styled(Link)`
   transition: color 0.3s;
 
   &:hover {
-    color: hsl(0, 0%, 63%);
-
+    color: hsl(0, 0%, 63%); /* Change this to your desired hover color */
+    
     svg path {
-      fill: hsl(0, 0%, 63%);
+      fill: hsl(0, 0%, 63%); /* Change this to your desired hover color for the SVG */
     }
   }
 
@@ -84,7 +91,7 @@ const NavButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background: hsl(0, 0%, 27%);
+    background: hsl(0, 0%, 27%); 
   }
 `;
 
