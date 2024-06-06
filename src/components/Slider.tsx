@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface Slide {
   imageUrl: string;
@@ -10,6 +12,81 @@ interface Slide {
 interface SliderProps {
   slides: Slide[];
 }
+
+const StyledSlider = styled.div`
+  display: flex;
+  height: 70%;
+`;
+
+const ImageContainer = styled.div`
+  flex: 1;
+`;
+
+const TextContainer = styled.div`
+  flex: 0.5;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  width: 40%;
+`;
+
+const SlideTitle = styled.h1`
+  font-weight: 800;
+  font-size: 40px;
+`;
+
+const SlideDescription = styled.p`
+  line-height: 1.4;
+  color: hsl(0, 0%, 63%);
+  font-weight: 500;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  letter-spacing: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+
+  &:hover {
+    color: hsl(0, 0%, 63%);
+
+    svg path {
+      fill: hsl(0, 0%, 63%);
+    }
+  }
+
+  svg {
+    margin-left: 8px;
+    transition: fill 0.3s;
+  }
+`;
+
+const NavButtons = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
+
+const NavButton = styled.button`
+  padding: 20px 25px;
+  background: hsl(0, 0%, 0%);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background: hsl(0, 0%, 27%);
+  }
+`;
 
 const Slider: React.FC<SliderProps> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,20 +116,34 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={goToPrevSlide}>Prev</button>
-      
-      <div style={{ flex: 1 }}>
-        <img src={slides[currentSlide].imageUrl} alt={slides[currentSlide].altText} style={{ maxWidth: '100%', maxHeight: '400px' }} />
-      </div>
+    <StyledSlider>
+      <ImageContainer>
+        <img
+          src={slides[currentSlide].imageUrl}
+          alt={slides[currentSlide].altText}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </ImageContainer>
 
-      <div style={{ flex: 1, padding: '0 20px' }}>
-        <h2>{slides[currentSlide].title}</h2>
-        <p>{slides[currentSlide].description}</p>
-      </div>
-
-      <button onClick={goToNextSlide}>Next</button>
-    </div>
+      <TextContainer>
+        <SlideTitle>{slides[currentSlide].title}</SlideTitle>
+        <SlideDescription>{slides[currentSlide].description}</SlideDescription>
+        <StyledLink to="/shop">
+          SHOP NOW
+          <svg width="40" height="12" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" />
+          </svg>
+        </StyledLink>
+        <NavButtons>
+          <NavButton onClick={goToPrevSlide}>
+            <img src="images/icon-angle-left.svg" alt="arrow-left" />
+          </NavButton>
+          <NavButton onClick={goToNextSlide}>
+            <img src="images/icon-angle-right.svg" alt="arrow-right" />
+          </NavButton>
+        </NavButtons>
+      </TextContainer>
+    </StyledSlider>
   );
 };
 
