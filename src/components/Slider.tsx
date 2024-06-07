@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 interface Slide {
   imageUrl: string;
+  imageUrlMobile: string;
   altText: string;
   title: string;
   description: string;
@@ -16,6 +17,11 @@ interface SliderProps {
 const StyledSlider = styled.div`
   display: flex;
   height: 70%;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -37,7 +43,13 @@ const TextContainer = styled.div`
   width: 40%;
 
   @media (max-width: 1050px) {
-    padding: 0 40px;
+    padding: 80px 80px;
+  }
+  @media (max-width: 780px) {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 40px 40px;
   }
 `;
 
@@ -49,7 +61,8 @@ const SlideTitle = styled.h1`
 const SlideDescription = styled.p`
   line-height: 1.4;
   color: hsl(0, 0%, 63%);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
 `;
 
 const StyledLink = styled(Link)`
@@ -64,10 +77,10 @@ const StyledLink = styled(Link)`
   transition: color 0.3s;
 
   &:hover {
-    color: hsl(0, 0%, 63%); /* Change this to your desired hover color */
+    color: hsl(0, 0%, 63%); 
     
     svg path {
-      fill: hsl(0, 0%, 63%); /* Change this to your desired hover color for the SVG */
+      fill: hsl(0, 0%, 63%);
     }
   }
 
@@ -81,6 +94,12 @@ const NavButtons = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
+
+  @media (max-width: 1050px) {
+    top: -71px;
+    right: 0;
+    left: unset;
+  }
 `;
 
 const NavButton = styled.button`
@@ -97,6 +116,19 @@ const NavButton = styled.button`
 
 const Slider: React.FC<SliderProps> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -126,7 +158,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
     <StyledSlider>
       <ImageContainer>
         <img
-          src={slides[currentSlide].imageUrl}
+          src={windowWidth < 780 ? slides[currentSlide].imageUrlMobile : slides[currentSlide].imageUrl}
           alt={slides[currentSlide].altText}
           style={{ width: '100%', height: '100%' }}
         />
