@@ -26,7 +26,7 @@ A user can:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://reliable-cocada-08475f.netlify.app/)
+- [see live](https://reliable-cocada-08475f.netlify.app/)
 
 ### Built with
 
