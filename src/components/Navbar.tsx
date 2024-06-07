@@ -130,7 +130,23 @@ const DesktopNavList = styled.ul`
   @media (max-width: 780px) {
     display: none;
   }
+
+  @media (min-width: 781px) and (max-width: 850px) {
+    li:nth-last-child(2) {
+      color: black;
+    }
+    li:last-child {
+      color: black;
+    }
+  }
+
+  @media (min-width: 851px) and (max-width: 1030px) {
+    li:last-child {
+      color: black;
+    }
+  }
 `;
+
 
 const Navbar: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
